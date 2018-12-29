@@ -1,4 +1,15 @@
-{ pkgs ? import <nixpkgs> {}
+{ pkgs ?
+  let
+    basePkgs = import <nixpkgs> { };
+    pinnedNixpkgs = basePkgs.lib.importJSON ./nixpkgs.json;
+  in
+  import (
+    builtins.fetchTarball {
+      url = pinnedNixpkgs.url;
+      sha256 = pinnedNixpkgs.sha256;
+    }
+  )
+  { config = { allowUnsupportedSystem = true; }; }
 , avr ? true, arm ? true, teensy ? true }:
 
 with pkgs;
@@ -18,7 +29,7 @@ stdenv.mkDerivation {
   name = "qmk-firmware";
 
   buildInputs = [ dfu-programmer dfu-util diffutils git ]
-    ++ lib.optional avr [ avrbinutils avrgcc avrlibc ]
+    ++ lib.optional avr [ avrbinutils avrgcc avrlibc avrdude ]
     ++ lib.optional arm [ gcc-arm-embedded ]
     ++ lib.optional teensy [ teensy-loader-cli ];
 

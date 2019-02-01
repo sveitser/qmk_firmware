@@ -19,21 +19,18 @@
 
 #define _FN_R 1
 #define _FN_L 2
-#define _SYMB_R 3
-#define _SYMB_L 4
-#define _NUM 5
+#define _SYMB 3
+#define _NUM 4
 
 #define my_a MT(MOD_LCTL, KC_A)
 #define my_s MT(MOD_LSFT, KC_S)
 #define my_d MT(MOD_LGUI, KC_D)
 #define my_f LT(   _FN_R, KC_F)
 #define my_g LT(    _NUM, KC_G)
-#define my_e LT( _SYMB_R, KC_E)
-#define my_r MT(MOD_LALT, KC_R)
+#define my_e MT(MOD_LALT, KC_E)
 
-#define my_u MT(MOD_LALT, KC_U)
-#define my_i LT( _SYMB_L, KC_I)
-#define my_h LT( _SYMB_L, KC_H)
+#define my_i MT(MOD_LALT, KC_I)
+#define my_spc LT( _SYMB, KC_SPC)
 #define my_j LT(   _FN_L, KC_J)
 #define my_k MT(MOD_RGUI, KC_K)
 #define my_l MT(MOD_RSFT, KC_L)
@@ -49,10 +46,10 @@ const uint16_t keymaps_default[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(KEYMAP_60_ANSI)
     [0] = LAYOUT_60_ansi(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
-        KC_TAB,  KC_Q,    KC_W,    my_e,    my_r,    KC_T,    KC_Y,    my_u,    my_i,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,
-        KC_CAPS, my_a,    my_s,    my_d,    my_f,    my_g,    my_h,    my_j,    my_k,    my_l, my_scln,    KC_QUOT, KC_ENT,
+        KC_TAB,  KC_Q,    KC_W,    my_e,    KC_R,    KC_T,    KC_Y,    KC_U,    my_i,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,
+        KC_CAPS, my_a,    my_s,    my_d,    my_f,    my_g,    KC_H,    my_j,    my_k,    my_l, my_scln,    KC_QUOT, KC_ENT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, KC_SPC,  KC_RALT, MO(1),   MO(2), KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, my_spc,  KC_RALT, MO(1),   MO(2), KC_RCTL
     ),
     [_FN_R] = LAYOUT_60_ansi(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
@@ -68,18 +65,11 @@ const uint16_t keymaps_default[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,            _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______,           _______,
         _______,     _______,    _______,                                 _______                        ,    _______,  _______, _______, _______
     ),
-    [_SYMB_R] = LAYOUT_60_ansi(
-        _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______,      _______,
-        _______,     _______, _______, _______, _______, _______,          KC_MINUS, KC_PLUS,  KC_EQL, KC_UNDS, _______, _______, _______, _______,
-        _______,         _______, _______, _______, _______, _______,            S(KC_P), KC_LPRN,  KC_RPRN, KC_LBRC, KC_RBRC, _______, _______,
-        _______,            _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______,        _______,
-        _______,     _______,    _______,                                 _______                        ,    _______,  _______, _______, _______
-    ),
-    [_SYMB_L] = LAYOUT_60_ansi(
-        _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______, _______, _______,
-        _______,     KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,          _______, _______, _______, _______, _______, _______, _______, _______,
-        _______,         KC_CIRC, KC_AMPR, KC_TILD, KC_PIPE, KC_BSLS,          _______, _______, _______, _______, _______, _______,     _______,
-        _______,            KC_DQT, KC_QUOT,  KC_UNDS, KC_GRV,  _______,           _______, _______, _______, _______, _______,           _______,
+    [_SYMB] = LAYOUT_60_ansi(
+        _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______, _______,     _______,
+        _______,     KC_EXLM,   KC_AT, KC_HASH, KC_DLR,  KC_PERC,           KC_MINUS, KC_PLUS,  KC_EQL, KC_UNDS, _______, _______, _______, _______,
+        _______,         KC_CIRC, KC_AMPR, KC_TILD, KC_PIPE, KC_BSLS,          S(KC_P), KC_LPRN,  KC_RPRN, KC_LBRC, KC_RBRC, _______,       _______,
+        _______,            KC_DQT, KC_QUOT,  KC_UNDS, KC_GRV,  _______,           _______, _______, _______, _______, _______,             _______,
         _______,     _______,    _______,                                 _______                        ,    _______,  _______, _______, _______
     ),
     [_NUM] = LAYOUT_60_ansi(

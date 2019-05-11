@@ -13,23 +13,24 @@ extern keymap_config_t keymap_config;
 
 #define _FN_R 3
 
-#define my_a MT(MOD_LCTL, KC_A)
-#define my_s MT(MOD_LSFT, KC_S)
-#define my_d MT(MOD_LGUI, KC_D)
-#define my_f LT(   _FN_R, KC_F)
+#define my_a LCTL_T(KC_A)
+#define my_s LSFT_T(KC_S)
+#define my_d LGUI_T(KC_D)
+#define my_f LT(_FN_R, KC_F)
 /* #define my_g LT(    _NUM, KC_G) */
-/* #define my_g LT(    _RAISE, KC_G) */
-#define my_ent MT(MOD_LALT, KC_ENT)
+#define my_r LT(_ADJUST, KC_R)
+#define my_u LT(_ADJUST, KC_U)
+#define my_ent LALT_T(KC_ENT)
 
-/* #define my_i MT(MOD_LALT, KC_I) */
+/* #define my_i LALT_T(KC_I) */
 /* #define my_spc LT( _SYMB, KC_SPC) */
 #define my_spc LT(LOWER, KC_SPC)
 #define my_bspc LT(LOWER, KC_BSPC)
 /* #define my_j LT(   _FN_L, KC_J) */
 #define my_j LT(  _LOWER, KC_J)
-#define my_k MT(MOD_RGUI, KC_K)
-#define my_l MT(MOD_RSFT, KC_L)
-#define my_scln MT(MOD_RCTL, KC_SCLN)
+#define my_k RGUI_T(KC_K)
+#define my_l RSFT_T(KC_L)
+#define my_scln RCTL_T(KC_SCLN)
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -45,7 +46,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT( \
-  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    \
+  KC_Q,    KC_W,    KC_E,    my_r,    KC_T,         KC_Y,    my_u,    KC_I,    KC_O,    KC_P,    \
   my_a,    my_s,    my_d,    my_f,    KC_G,         KC_H,    my_j,    my_k,    my_l,    my_scln, \
   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
          KC_TAB, LT(RAISE, KC_ESC),   my_bspc,       my_spc,   LT(RAISE, KC_ENT),   KC_DEL                 \

@@ -11,7 +11,7 @@
 #define ladj LT(_ADJUST, KC_R)
 
 // top right
-#define ralt RALT_T(KC_I)
+#define ralt LALT_T(KC_I) // emacs needs left alt for meta
 #define radj LT(_ADJUST, KC_U)
 
 // middle left

@@ -15,19 +15,19 @@
 #define radj LT(_ADJUST, KC_U)
 
 // middle left
-#define lctl LCTL_T(KC_A)
+#define lctl LCTL_T(KC_F)
 #define lsft LSFT_T(KC_S)
 #define lgui LGUI_T(KC_D)
-#define fnr LT(_FNR, KC_F)
+#define fnr LT(_FNR, KC_A)
 
 // middle right
 // KC_J does not have second role yet
 #define rgui RGUI_T(KC_K)
 #define rsft RSFT_T(KC_L)
-#define rctl RCTL_T(KC_SCLN)
+#define rctl RCTL_T(KC_J)
 
 // thumb left
-#define low_spc LT(_LOWER, KC_SPC)
+#define raise_spc LT(_RAISE, KC_SPC)
 #define low_bspc LT(_LOWER, KC_BSPC)
 
 // thumb right
@@ -43,18 +43,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT( \
 
   KC_Q,    KC_W,    lalt,    ladj,    KC_T,         KC_Y,    radj,    ralt,    KC_O,    KC_P,    \
-
-  lctl,    lsft,    lgui,     fnr,    KC_G,         KC_H,    KC_J,    rgui,    rsft,    rctl,    \
-
+  fnr,    lsft,    lgui,     lctl,    KC_G,         KC_H,    rctl,    rgui,    rsft,    KC_SCLN,    \
   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
-
-            KC_TAB,  raise_esc,   low_bspc,       low_spc,  raise_ent,   KC_DEL                  \
+            KC_TAB,  raise_esc,   low_bspc,     raise_spc,  raise_ent,   KC_DEL                  \
 ),
 
 [_RAISE] = LAYOUT( \
   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
-  KC_TAB,    KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,      _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, \
-  KC_LCTL, KC_GRV,  KC_LGUI, KC_LALT, _______,      _______, _______, _______, KC_BSLS, KC_QUOT, \
+  _______,  _______, _______, _______, _______,      _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, \
+  _______, _______, _______, _______, _______,      _______, _______, _______, KC_BSLS, KC_QUOT, \
                     _______, _______, _______,      _______, _______, _______                    \
 ),
 

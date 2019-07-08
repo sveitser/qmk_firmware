@@ -22,19 +22,19 @@
 #define _SYMB 3
 #define _NUM 4
 
-#define my_a MT(MOD_LCTL, KC_A)
+#define my_f MT(MOD_LCTL, KC_F)
 #define my_s MT(MOD_LSFT, KC_S)
 #define my_d MT(MOD_LGUI, KC_D)
-#define my_f LT(   _FN_R, KC_F)
+#define my_a LT(   _FN_R, KC_A)
 #define my_g LT(    _NUM, KC_G)
 #define my_e MT(MOD_LALT, KC_E)
 
 #define my_i MT(MOD_LALT, KC_I)
 #define my_spc LT( _SYMB, KC_SPC)
-#define my_j LT(   _FN_L, KC_J)
+#define my_scln LT(   _FN_L, KC_SCLN)
 #define my_k MT(MOD_RGUI, KC_K)
 #define my_l MT(MOD_RSFT, KC_L)
-#define my_scln MT(MOD_RCTL, KC_SCLN)
+#define my_j MT(MOD_RCTL, KC_J)
 
         /* _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______,      _______, */
         /* _______,     _______, _______, _______, _______, _______,          _______, _______,  _______, _______, _______, _______, _______, _______, */

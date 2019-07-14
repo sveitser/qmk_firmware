@@ -34,32 +34,32 @@ enum custom_keycodes {
 };
 
 #define my_a LT(   _FN_R, KC_A)
-#define my_s MT(MOD_LSFT, KC_S)
-#define my_d MT(MOD_LGUI, KC_D)
-#define my_f MT(MOD_LCTL, KC_F)
+#define my_s MT(MOD_LGUI, KC_S)
+#define my_d MT(MOD_LCTL, KC_D)
+#define my_f MT(MOD_LSFT, KC_F)
 #define my_g LT(    _NUM, KC_G)
 #define my_e MT(MOD_LALT, KC_E)
 
 #define my_i MT(MOD_LALT, KC_I)
 #define my_spc LT( _SYMB, KC_SPC)
+#define my_j MT(MOD_RSFT, KC_J)
+#define my_k MT(MOD_RCTL, KC_K)
+#define my_l MT(MOD_RGUI, KC_L)
 #define my_scln LT(   _FN_L, KC_SCLN)
-#define my_l MT(MOD_RSFT, KC_L)
-#define my_k MT(MOD_RGUI, KC_K)
-#define my_j MT(MOD_RCTL, KC_J)
 
 #define cm_a LT(   _FN_R, KC_A)
-#define cm_r MT(MOD_LSFT, KC_R)
-#define cm_s MT(MOD_LGUI, KC_S)
-#define cm_t MT(MOD_LCTL, KC_T)
+#define cm_r MT(MOD_LGUI, KC_R)
+#define cm_s MT(MOD_LCTL, KC_S)
+#define cm_t MT(MOD_LSFT, KC_T)
 #define cm_d LT(    _NUM, KC_D)
 #define cm_f MT(MOD_LALT, KC_F)
 
 #define cm_u MT(MOD_LALT, KC_U)
 #define cm_spc LT( _SYMB, KC_SPC)
+#define cm_n MT(MOD_RSFT, KC_N)
+#define cm_e MT(MOD_RCTL, KC_E)
+#define cm_i MT(MOD_RGUI, KC_I)
 #define cm_o LT(   _FN_L, KC_O)
-#define cm_i MT(MOD_RSFT, KC_I)
-#define cm_e MT(MOD_RGUI, KC_E)
-#define cm_n MT(MOD_RCTL, KC_N)
         /* _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______,      _______, */
         /* _______,     _______, _______, _______, _______, _______,          _______, _______,  _______, _______, _______, _______, _______, _______, */
         /* _______,         _______, _______, _______, _______, _______,          _______, _______,  _______, _______, _______,  _______,    _______, */

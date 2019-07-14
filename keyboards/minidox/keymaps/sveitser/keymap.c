@@ -1,10 +1,20 @@
 #include QMK_KEYBOARD_H
 
 #define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
-#define _FNR 3
-#define _ADJUST 4
+#define _COLEMAK 1
+#define _LOWER 2
+#define _RAISE 3
+#define _FNR 4
+#define _ADJUST 5
+
+enum custom_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
+  FN_R,
+  FN_L,
+  SYMB,
+  NUM,
+};
 
 // top left
 #define lalt LALT_T(KC_E)
@@ -15,16 +25,36 @@
 #define radj LT(_ADJUST, KC_U)
 
 // middle left
-#define lctl LCTL_T(KC_F)
-#define lsft LSFT_T(KC_S)
-#define lgui LGUI_T(KC_D)
-#define fnr LT(_FNR, KC_A)
+#define _A LT(_FNR, KC_A)
+#define _S LGUI_T(KC_S)
+#define _D LCTL_T(KC_D)
+#define _F LSFT_T(KC_F)
 
 // middle right
-// KC_J does not have second role yet
-#define rgui RGUI_T(KC_K)
-#define rsft RSFT_T(KC_L)
-#define rctl RCTL_T(KC_J)
+#define _SCLN KC_SCLN
+#define _L RGUI_T(KC_L)
+#define _K RCTL_T(KC_K)
+#define _J RSFT_T(KC_J)
+
+// top left colemak
+#define lalt_cm LALT_T(KC_F)
+#define ladj_cm LT(_ADJUST, KC_P)
+
+// top right colemak
+#define ralt_cm LALT_T(KC_U) // emacs needs left alt for meta
+#define radj_cm LT(_ADJUST, KC_L)
+
+// middle left colemak
+#define _A_CM LT(_FNR, KC_A)
+#define _R_CM LGUI_T(KC_R)
+#define _S_CM LCTL_T(KC_S)
+#define _T_CM LSFT_T(KC_T)
+
+// middle right colemak
+#define _O_CM KC_O
+#define _I_CM RGUI_T(KC_I)
+#define _E_CM RCTL_T(KC_E)
+#define _N_CM RSFT_T(KC_N)
 
 // thumb left
 #define raise_spc LT(_RAISE, KC_SPC)
@@ -43,8 +73,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT( \
 
   KC_Q,    KC_W,    lalt,    ladj,    KC_T,         KC_Y,    radj,    ralt,    KC_O,    KC_P,    \
-  fnr,    lsft,    lgui,     lctl,    KC_G,         KC_H,    rctl,    rgui,    rsft,    KC_SCLN,    \
+    _A,      _S,      _D,      _F,    KC_G,         KC_H,      _J,      _K,      _L,    _SCLN,   \
   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
+            KC_BSPC,  raise_esc,   low_tab,     raise_spc,  raise_ent,   KC_DEL                  \
+),
+
+[_COLEMAK] = LAYOUT( \
+
+  KC_Q,    KC_W, lalt_cm, ladj_cm,    KC_G,         KC_J, radj_cm, ralt_cm,    KC_Y,    KC_SCLN,    \
+    _A_CM,  _R_CM,  _S_CM,  _T_CM,    KC_G,         KC_H,   _N_CM,   _E_CM,   _I_CM,    _O_CM,   \
+  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
             KC_BSPC,  raise_esc,   low_tab,     raise_spc,  raise_ent,   KC_DEL                  \
 ),
 
@@ -73,6 +111,29 @@ _______, _______, _______, _______, _______,       KC_UP, _______, _______, ____
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,          KC_F6,   KC_F7,   KC_UP,   KC_F9,  KC_F10, \
   KC_F11,  KC_F12,  _______, RGB_SAI, RGB_SAD,      _______, KC_LEFT, KC_DOWN, KC_RGHT, CALTDEL, \
   RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD,      RGB_VAI, RGB_VAD,   KC_F8, TSKMGR,  _______, \
-                    _______, _______, _______,      _______, _______, _______                    \
+                    QWERTY, COLEMAK,  _______,      _______, _______, _______                    \
 )
+};
+
+void persistent_default_layer_set(uint16_t default_layer) {
+  eeconfig_update_default_layer(default_layer);
+  default_layer_set(default_layer);
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+        case QWERTY:
+          if (record->event.pressed) {
+            persistent_default_layer_set(1UL<<_QWERTY);
+          }
+          return false;
+          break;
+        case COLEMAK:
+          if (record->event.pressed) {
+            persistent_default_layer_set(1UL<<_COLEMAK);
+          }
+          return false;
+          break;
+  }
+    return true;
 };

@@ -5,7 +5,8 @@
 #define _LOWER 2
 #define _RAISE 3
 #define _FNR 4
-#define _ADJUST 5
+#define _SYM 5
+#define _ADJUST 16
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -13,6 +14,7 @@ enum custom_keycodes {
   FN_R,
   FN_L,
   SYMB,
+  SYM,
   NUM,
 };
 
@@ -81,9 +83,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT( \
 
   KC_Q,    KC_W, lalt_cm, ladj_cm,    KC_G,         KC_J, radj_cm, ralt_cm,    KC_Y,    KC_SCLN,    \
-    _A_CM,  _R_CM,  _S_CM,  _T_CM,    KC_G,         KC_H,   _N_CM,   _E_CM,   _I_CM,    _O_CM,   \
+    _A_CM,  _R_CM,  _S_CM,  _T_CM,    KC_D,         KC_H,   _N_CM,   _E_CM,   _I_CM,    _O_CM,   \
   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
-            KC_BSPC,  raise_esc,   low_tab,     raise_spc,  raise_ent,   KC_DEL                  \
+            KC_ESC, OSM(MOD_LSFT), low_tab,     raise_spc,  OSL(_SYM),  raise_ent     \
 ),
 
 [_RAISE] = LAYOUT( \
@@ -105,6 +107,15 @@ _______, _______, _______, _______, _______,       KC_DOWN, KC_RIGHT,  _______, 
 _______, _______, _______, _______, _______,       KC_LEFT, KC_HOME,  KC_PGUP,  KC_PGDN, KC_END,  \
 _______, _______, _______, _______, _______,       KC_UP, _______, _______, _______, _______,     \
                   _______, _______, _______,       _______, _______, _______                      \
+),
+
+// WIP
+
+[_SYM] = LAYOUT( \
+  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
+  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
+  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_TILD,      KC_BSLS, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR,  \
+                     KC_PIPE, KC_QUOT,  KC_DQT,     KC_PIPE, KC_QUOT,  KC_DQT                     \
 ),
 
 [_ADJUST] =  LAYOUT( \

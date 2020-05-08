@@ -19,14 +19,16 @@
 
 #define _QWERTY 0
 #define _COLEMAK 1
-#define _FN_R 2
-#define _FN_L 3
-#define _SYMB 4
-#define _NUM 5
+#define _QWERTY_NO_MOD 2
+#define _FN_R 3
+#define _FN_L 4
+#define _SYMB 5
+#define _NUM 6
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
+  QWERTY_NO_MOD,
   FN_R,
   FN_L,
   SYMB,
@@ -73,14 +75,21 @@ const uint16_t keymaps_default[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    my_e,    KC_R,    KC_T,    KC_Y,    KC_U,    my_i,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,
         KC_CAPS, my_a,    my_s,    my_d,    my_f,    my_g,    KC_H,    my_j,    my_k,    my_l, my_scln,    KC_QUOT, KC_ENT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, my_spc,  KC_RALT, MO(1),   MO(2), KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, my_spc,  KC_RALT, MO(_FN_L),   MO(_FN_L), KC_RCTL
     ),
     [_COLEMAK] = LAYOUT_60_ansi(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    cm_f,    KC_P,    KC_G,    KC_J,    KC_L,    cm_u,    KC_Y,    KC_SCLN,    KC_LBRC, KC_RBRC, KC_BSLS,
         KC_BSPC, cm_a,    cm_r,    cm_s,    cm_t,    cm_d,    KC_H,    cm_n,    cm_e,    cm_i,    cm_o,    KC_QUOT, KC_ENT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, my_spc,  KC_RALT, MO(1),   MO(2), KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, my_spc,  KC_RALT, MO(_FN_L),   MO(_FN_L), KC_RCTL
+    ),
+    [_QWERTY_NO_MOD] = LAYOUT_60_ansi (
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,
+        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,    KC_QUOT, KC_ENT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_LCTL, KC_LGUI, KC_LALT, my_spc,  KC_RALT, MO(_FN_L),   MO(_FN_L), KC_RCTL
     ),
     [_FN_R] = LAYOUT_60_ansi(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
@@ -91,7 +100,7 @@ const uint16_t keymaps_default[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FN_L] = LAYOUT_60_ansi(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-        _______,     QWERTY, COLEMAK, _______, _______, _______,          _______, _______,  _______, _______, _______, _______, _______, _______,
+        _______,     QWERTY, COLEMAK, QWERTY_NO_MOD, _______, _______,          _______, _______,  _______, _______, _______, _______, _______, _______,
         _______,          KC_BSPC,  KC_ESC,  KC_TAB,  KC_ENT, _______,          _______, _______,  _______, _______, _______,  _______,    _______,
         _______,        _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______,           _______,
         _______,     _______,    _______,                                 _______                        ,    _______,  _______, _______, _______
@@ -115,8 +124,8 @@ const uint16_t keymaps_default[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_core(
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,  KC_BSPC,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_RSFT, MO(2),
-        KC_LCTL, KC_LGUI, KC_LALT, KC_NO,   KC_SPC,  KC_SPC,  MO(1),   KC_RALT, KC_APP,  KC_RCTL
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_RSFT, _FN_L,
+        KC_LCTL, KC_LGUI, KC_LALT, KC_NO,   KC_SPC,  KC_SPC,  MO(_FN_L),   KC_RALT, KC_APP,  KC_RCTL
     ),
     [1] = LAYOUT_core(
         _______, _______, _______, _______, _______, _______, _______, KC_PGUP, KC_UP,   KC_PGDN, KC_PSCR, KC_SLCK, KC_PAUS,
@@ -173,6 +182,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case COLEMAK:
           if (record->event.pressed) {
             persistent_default_layer_set(1UL<<_COLEMAK);
+          }
+          return false;
+          break;
+        case QWERTY_NO_MOD:
+          if (record->event.pressed) {
+            persistent_default_layer_set(1UL<<_QWERTY_NO_MOD);
           }
           return false;
           break;

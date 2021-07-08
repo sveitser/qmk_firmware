@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec docker run -v $(pwd):/qmk_firmware -it qmkfm/qmk_firmware bash -c 'make clean && make vortex/pok3r:sveitser'
